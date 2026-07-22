@@ -1,0 +1,8 @@
+node_modules/
+_tools/node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.vercel
+_cap/
+_v/
