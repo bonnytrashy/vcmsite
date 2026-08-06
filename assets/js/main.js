@@ -263,6 +263,7 @@
   /* ---------------- MODAL (lista de espera) ---------------- */
   const modal = document.getElementById('waitlistModal');
   let modalPanel = null;
+  let resetWizard = null;
   if (modal) {
     modalPanel = modal.querySelector('.modal__panel');
     let lastFocus = null;
@@ -272,6 +273,7 @@
       modal.setAttribute('aria-hidden', 'false');
       document.body.classList.add('modal-open');
       if (lenis) lenis.stop();
+      if (resetWizard) resetWizard();
       setTimeout(() => { (modal.querySelector('input[name="nome"]') || modal.querySelector('.modal__close')).focus(); }, 260);
     };
     const closeModal = () => {
@@ -295,6 +297,46 @@
   };
 
   if (form) {
+    /* ---- wizard: 3 passos ---- */
+    const steps = Array.from(form.querySelectorAll('.wz__step'));
+    if (steps.length) {
+      const bar = form.querySelector('#wzBar');
+      const stepNum = form.querySelector('#wzStep');
+      const backBtn = form.querySelector('#wzBack');
+      const nextBtn = form.querySelector('#wzNext');
+      const submitBtn = form.querySelector('#wzSubmit');
+      let cur = 0;
+      const validateStep = (i) => {
+        let ok = true, firstBad = null;
+        const step = steps[i];
+        step.querySelectorAll('input[required],select[required]').forEach((el) => {
+          const empty = !el.value || (el.type === 'email' && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value));
+          markInvalid(el, empty);
+          if (empty) { ok = false; firstBad = firstBad || el; }
+        });
+        step.querySelectorAll('.field--group').forEach((g) => {
+          const r = g.querySelector('input[type="radio"]');
+          if (r && !form.querySelector(`input[name="${r.name}"]:checked`)) { ok = false; firstBad = firstBad || g; }
+        });
+        if (!ok) { form.classList.add('shake'); setTimeout(() => form.classList.remove('shake'), 450); if (firstBad && firstBad.scrollIntoView) firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+        return ok;
+      };
+      const render = (scroll) => {
+        steps.forEach((s, i) => s.classList.toggle('is-active', i === cur));
+        if (bar) bar.style.width = ((cur + 1) / steps.length * 100) + '%';
+        if (stepNum) stepNum.textContent = cur + 1;
+        const last = cur === steps.length - 1;
+        backBtn.hidden = cur === 0;
+        nextBtn.hidden = last;
+        submitBtn.hidden = !last;
+        if (scroll && modalPanel) modalPanel.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+      nextBtn.addEventListener('click', () => { if (validateStep(cur)) { cur = Math.min(cur + 1, steps.length - 1); render(true); } });
+      backBtn.addEventListener('click', () => { cur = Math.max(cur - 1, 0); render(true); });
+      resetWizard = () => { cur = 0; render(false); };
+      render(false);
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       let valid = true, firstBad = null;
@@ -334,6 +376,22 @@
       el.addEventListener('change', () => markInvalid(el, false));
     });
   }
+
+  /* ---------------- JORNADA — preenchimento da linha do tempo ---------------- */
+  (function timelineSpine() {
+    const fill = document.getElementById('tlFill');
+    const tl = document.querySelector('.timeline');
+    if (!fill || !tl) return;
+    if (hasGSAP) {
+      fill.style.setProperty('--fill', '0');
+      ScrollTrigger.create({
+        trigger: tl, start: 'top 72%', end: 'bottom 80%', scrub: 0.5,
+        onUpdate: (self) => fill.style.setProperty('--fill', self.progress.toFixed(3)),
+      });
+    } else {
+      fill.style.setProperty('--fill', '1');
+    }
+  })();
 
   if (hasGSAP) setTimeout(() => ScrollTrigger.refresh(), 1600);
 })();

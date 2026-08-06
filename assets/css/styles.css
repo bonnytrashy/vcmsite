@@ -943,3 +943,78 @@ html.lenis,html.lenis body{height:auto}
 .modal__sub{color:var(--muted);font-size:.95rem;line-height:1.5}
 .modal .success{margin:0;border:none;padding:.5rem 0;background:none;box-shadow:none}
 body.modal-open{overflow:hidden}
+
+/* =====================================================================
+   ITERAÇÃO 3 — Jornada timeline · Form wizard · CTA bands · espaçamento
+   ===================================================================== */
+
+/* ---------- JORNADA como timeline vertical (distinta do Método) ---------- */
+.timeline{position:relative;list-style:none;max-width:860px;margin:clamp(3rem,7vh,5rem) auto 0;display:flex;flex-direction:column;gap:clamp(2.4rem,5vh,4.2rem)}
+.timeline__spine{position:absolute;left:calc(clamp(56px,6vw,76px) / 2);top:1.6rem;bottom:1.6rem;width:2px;background:var(--line-soft);border-radius:2px;overflow:hidden;z-index:0}
+.timeline__spine i{position:absolute;inset:0;transform-origin:top;transform:scaleY(var(--fill,1));background:linear-gradient(180deg,var(--rose),var(--gold));box-shadow:0 0 14px rgba(234,190,198,.45)}
+.tl{position:relative;display:grid;grid-template-columns:clamp(56px,6vw,76px) 1fr;gap:clamp(1.2rem,3vw,2.4rem);align-items:start}
+.tl__num{
+  position:relative;z-index:2;display:grid;place-items:center;
+  width:clamp(56px,6vw,76px);height:clamp(56px,6vw,76px);border-radius:50%;
+  background:radial-gradient(circle at 50% 30%,var(--char-2),var(--ink));border:1px solid var(--line-rose);
+  font-family:var(--fx);font-style:italic;font-weight:300;font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--gold-lite);
+  box-shadow:0 0 0 7px var(--void),0 12px 34px -12px rgba(234,190,198,.5);
+}
+.tl__body{padding-top:.35rem}
+.tl__meta{font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--rose)}
+.tl__title{font-family:var(--fx);font-weight:400;font-size:clamp(1.5rem,3vw,2.3rem);color:var(--cream);margin:.45rem 0 1.1rem;line-height:1.03}
+.tl__body ul{display:flex;flex-direction:column;gap:.7rem}
+.tl__body li{position:relative;padding-left:1.3rem;font-size:1rem;color:var(--muted);line-height:1.45}
+.tl__body li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--gold)}
+@media (max-width:560px){
+  .tl{grid-template-columns:48px 1fr;gap:1rem}
+  .tl__num{width:48px;height:48px;font-size:1.1rem;box-shadow:0 0 0 6px var(--void),0 10px 24px -10px rgba(234,190,198,.5)}
+  .timeline__spine{left:24px}
+}
+
+/* ---------- FORM wizard ---------- */
+.form--wizard{gap:1.7rem}
+.wz__progress{display:flex;align-items:center;gap:1rem}
+.wz__track{flex:1;height:3px;background:var(--line-soft);border-radius:3px;overflow:hidden}
+.wz__track i{display:block;height:100%;width:33.33%;background:linear-gradient(90deg,var(--rose),var(--gold));border-radius:3px;box-shadow:0 0 10px rgba(234,190,198,.5);transition:width .55s var(--ease)}
+.wz__count{font-family:var(--fx);color:var(--muted);white-space:nowrap;display:flex;align-items:baseline;gap:.35em}
+.wz__count b{font-style:italic;font-size:1.5rem;color:var(--gold-lite);line-height:1}
+.wz__count em{font-style:normal;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.wz__step{border:0;padding:0;margin:0;min-inline-size:0;display:none;flex-direction:column;gap:1.35rem}
+.wz__step.is-active{display:flex;animation:wzIn .5s var(--ease)}
+@keyframes wzIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.wz__legend{font-family:var(--fx);font-weight:400;font-size:1.2rem;color:var(--cream);display:flex;align-items:center;gap:.7em;padding-bottom:.6rem;border-bottom:1px solid var(--line-soft)}
+.wz__legend-i{font-style:italic;color:var(--gold);font-size:.82rem;border:1px solid var(--line);border-radius:100px;padding:.25em .8em}
+.wz__nav{display:flex;gap:.9rem;align-items:center;margin-top:.5rem;flex-wrap:wrap}
+.wz__next,.wz__submit{margin-left:auto}
+.wz__next,.wz__submit,.wz__back{justify-content:center}
+@media (max-width:520px){
+  .wz__nav{flex-direction:column-reverse;align-items:stretch}
+  .wz__next,.wz__submit,.wz__back{margin-left:0;width:100%}
+}
+
+/* ---------- CTA bands (mais botões pela página) ---------- */
+.cta-band{
+  max-width:var(--maxw);margin:clamp(3.5rem,8vh,6rem) auto 0;
+  padding:clamp(2rem,4vw,3rem) clamp(1.6rem,4vw,3.4rem);border:1px solid var(--line);border-radius:26px;
+  background:radial-gradient(120% 130% at 50% 0,rgba(216,178,94,.09),transparent 55%),linear-gradient(180deg,rgba(30,23,17,.5),rgba(12,9,7,.42));
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;position:relative;overflow:hidden;
+}
+.cta-band::before{content:"✦";position:absolute;top:-1.2rem;right:1.5rem;font-size:6rem;color:var(--rose);opacity:.06;pointer-events:none}
+.cta-band--center{flex-direction:column;justify-content:center;text-align:center}
+.cta-band__line{font-family:var(--fx);font-weight:300;font-size:clamp(1.35rem,2.8vw,2.1rem);line-height:1.18;max-width:24ch}
+.cta-band em{font-style:italic}
+@media (max-width:640px){.cta-band{flex-direction:column;text-align:center}.cta-band__line{max-width:100%}}
+
+/* ---------- espaçamento desktop mais generoso ---------- */
+@media (min-width:900px){
+  .manifesto,.recon,.virada,.ab,.pilares,.jornada,.viviane,.conquistas,.prova,.lista{
+    padding-top:clamp(7rem,14vh,11rem);padding-bottom:clamp(7rem,14vh,11rem);
+  }
+  .conquistas__grid{gap:1.7rem}
+  .conquistas__head,.pilares__head,.jornada__head,.ab__head{margin-bottom:clamp(3.5rem,6vh,5rem)}
+  .conquistas article,.pilar{padding:2.8rem 2.2rem 3rem}
+}
+
+/* garante que o atributo hidden vença o display dos .btn (wizard) */
+[hidden]{display:none!important}
