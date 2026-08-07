@@ -73,16 +73,20 @@
   }
 
   /* ---------------- MAGNETIC BUTTONS ---------------- */
-  if (!isTouch) {
-    document.querySelectorAll('[data-magnetic],.btn--gold,.btn--ghost,.btn--nav').forEach((btn) => {
-      const strength = 0.32;
+  if (!isTouch && window.matchMedia('(min-width: 900px)').matches) {
+    document.querySelectorAll('[data-magnetic],.btn--gold,.btn--ghost').forEach((btn) => {
+      const strength = 0.2;
+      let cx = 0, cy = 0, active = false;
+      const measure = () => { const r = btn.getBoundingClientRect(); cx = r.left + r.width / 2; cy = r.top + r.height / 2; active = true; };
+      btn.addEventListener('mouseenter', measure);
       btn.addEventListener('mousemove', (e) => {
-        const r = btn.getBoundingClientRect();
-        const mx = e.clientX - r.left - r.width / 2;
-        const my = e.clientY - r.top - r.height / 2;
-        btn.style.transform = `translate(${mx * strength}px, ${my * strength}px)`;
+        if (!active) measure();
+        // centro medido SEM o transform -> não acumula (sem drift/torto)
+        const dx = (e.clientX - cx) * strength;
+        const dy = (e.clientY - cy) * strength;
+        btn.style.transform = `translate(${dx.toFixed(1)}px, ${dy.toFixed(1)}px)`;
       });
-      btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+      btn.addEventListener('mouseleave', () => { active = false; btn.style.transform = ''; });
     });
   }
 
