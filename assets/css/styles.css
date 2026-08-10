@@ -1044,3 +1044,25 @@ body.modal-open{overflow:hidden}
   .modal__close{width:38px;height:38px}
   .wz__legend{font-size:1.05rem}
 }
+
+/* =====================================================================
+   FORM v3 — nav como rodapé fixo (100% funcional mobile) + tema preto
+   ===================================================================== */
+.modal__panel{
+  display:flex;flex-direction:column;overflow:hidden;
+  background:linear-gradient(180deg,#0b0908,#040302);
+  border-color:rgba(216,178,94,.16);
+}
+.modal__head{flex-shrink:0}
+.form--wizard{flex:1;min-height:0;display:flex;flex-direction:column;gap:0}
+.wz__scroll{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;gap:1.4rem;padding:.2rem .4rem .4rem 0;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+.wz__scroll::-webkit-scrollbar{width:7px}
+.wz__scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+.wz__nav{flex-shrink:0;margin-top:0;padding-top:1rem;border-top:1px solid var(--line-soft)}
+.form__legal{flex-shrink:0;margin-top:.7rem}
+/* tela de sucesso ocupa e centraliza no painel */
+.modal .success{flex:1;justify-content:center;max-height:100%;overflow-y:auto}
+/* campos pretos */
+.field input[type=text],.field input[type=tel],.field input[type=email],.select select{background:#000;border-color:rgba(255,255,255,.09)}
+.field input:focus,.select select:focus{background:#000;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,178,94,.14)}
+.chip span{background:rgba(0,0,0,.5)}
