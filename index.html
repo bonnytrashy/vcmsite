@@ -41,7 +41,7 @@
     <a href="#jornada">A Jornada</a>
     <a href="#viviane">Quem é Viviane</a>
   </nav>
-  <a href="#lista" class="btn btn--nav" data-modal-open data-cursor="join">Lista de espera<span class="btn__dot"></span></a>
+  <a href="inscricao.html" class="btn btn--nav" data-cursor="join">Lista de espera<span class="btn__dot"></span></a>
 </header>
 
 <main id="topo">
@@ -88,7 +88,7 @@
       </p>
 
       <div class="hero__cta" data-reveal>
-        <a href="#lista" class="btn btn--gold" data-modal-open data-magnetic data-cursor="join">
+        <a href="inscricao.html" class="btn btn--gold" data-magnetic data-cursor="join">
           Entrar para a lista de espera <span class="btn__arrow">→</span>
         </a>
         <a href="#manifesto" class="btn btn--ghost" data-magnetic data-cursor="scroll">Descubra por que isso acontece</a>
@@ -310,7 +310,7 @@
 
   <div class="cta-band" data-reveal>
     <p class="cta-band__line">A distância entre o ponto A e o ponto B é uma <em class="grad-rose">decisão</em>.</p>
-    <button type="button" class="btn btn--gold btn--lg" data-modal-open data-magnetic data-cursor="join">Entrar na lista de espera <span class="btn__arrow">→</span></button>
+    <a href="inscricao.html" class="btn btn--gold btn--lg" data-magnetic data-cursor="join">Entrar na lista de espera <span class="btn__arrow">→</span></a>
   </div>
 </section>
 
@@ -416,7 +416,7 @@
 
   <div class="cta-band" data-reveal>
     <p class="cta-band__line">Doze semanas para virar a mulher que <em class="grad">se posiciona</em>.</p>
-    <button type="button" class="btn btn--gold btn--lg" data-modal-open data-magnetic data-cursor="join">Entrar na lista de espera <span class="btn__arrow">→</span></button>
+    <a href="inscricao.html" class="btn btn--gold btn--lg" data-magnetic data-cursor="join">Entrar na lista de espera <span class="btn__arrow">→</span></a>
   </div>
 </section>
 
@@ -470,7 +470,7 @@
 
   <div class="cta-band cta-band--center" data-reveal>
     <p class="cta-band__line">Tudo isso começa entrando para a <em class="grad">lista de espera</em>.</p>
-    <button type="button" class="btn btn--gold btn--lg" data-modal-open data-magnetic data-cursor="join">Entrar na lista de espera <span class="btn__arrow">→</span></button>
+    <a href="inscricao.html" class="btn btn--gold btn--lg" data-magnetic data-cursor="join">Entrar na lista de espera <span class="btn__arrow">→</span></a>
   </div>
 </section>
 
@@ -508,156 +508,12 @@
       <li>Prioridade de acesso à próxima turma</li>
       <li>Inscrição em menos de 1 minuto</li>
     </ul>
-    <button type="button" class="btn btn--gold btn--lg" data-modal-open data-magnetic data-cursor="join">
+    <a href="inscricao.html" class="btn btn--gold btn--lg" data-magnetic data-cursor="join">
       Entrar na lista de espera <span class="btn__arrow">→</span>
-    </button>
+    </a>
   </div>
 </section>
 
-<!-- ============ MODAL · LISTA DE ESPERA ============ -->
-<div class="modal" id="waitlistModal" aria-hidden="true">
-  <div class="modal__backdrop" data-modal-close></div>
-  <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Entrar para a lista de espera">
-    <button class="modal__close" type="button" data-modal-close aria-label="Fechar">✕</button>
-    <div class="modal__head">
-      <p class="eyebrow"><span class="eyebrow__line"></span> Lista de espera</p>
-      <h3 class="modal__title">Garanta seu lugar na fila</h3>
-      <p class="modal__sub">Leva menos de 1 minuto. Suas respostas ajudam a priorizar quem tem mais alinhamento com a mentoria.</p>
-    </div>
-
-    <form class="form form--wizard" id="waitlist" novalidate>
-    <div class="wz__scroll">
-    <div class="wz__progress" aria-hidden="true">
-      <span class="wz__track"><i id="wzBar"></i></span>
-      <span class="wz__count"><b id="wzStep">1</b> <em>de 3</em></span>
-    </div>
-
-    <fieldset class="wz__step is-active" data-step="1">
-      <p class="wz__legend"><span class="wz__legend-i">01</span> Como falamos com você</p>
-      <div class="form__row">
-        <label class="field">
-          <span class="field__label">Seu nome <i>*</i></span>
-          <input type="text" name="nome" required autocomplete="name" placeholder="Como podemos te chamar?" />
-        </label>
-      </div>
-      <div class="form__row form__row--2">
-        <label class="field">
-          <span class="field__label">WhatsApp <i>*</i></span>
-          <input type="tel" name="whatsapp" required inputmode="tel" autocomplete="tel" placeholder="(00) 00000-0000" />
-        </label>
-        <label class="field">
-          <span class="field__label">E-mail <i>*</i></span>
-          <input type="email" name="email" required autocomplete="email" placeholder="voce@email.com" />
-        </label>
-      </div>
-      <label class="field">
-        <span class="field__label">Instagram <i>(opcional)</i></span>
-        <input type="text" name="instagram" autocomplete="off" placeholder="@seu.perfil" />
-      </label>
-    </fieldset>
-
-    <fieldset class="wz__step" data-step="2">
-      <p class="wz__legend"><span class="wz__legend-i">02</span> Seu momento hoje</p>
-      <label class="field">
-        <span class="field__label">Momento da carreira <i>*</i></span>
-        <span class="select">
-          <select name="carreira" required>
-            <option value="" disabled selected>Selecione</option>
-            <option>Analista</option>
-            <option>Especialista</option>
-            <option>Coordenadora</option>
-            <option>Gerente</option>
-            <option>Executiva</option>
-            <option>Empresária</option>
-            <option>Outro</option>
-          </select>
-        </span>
-      </label>
-      <fieldset class="field field--group">
-        <legend class="field__label">O que mais tem travado o seu crescimento hoje? <i>*</i></legend>
-        <div class="chips">
-          <label class="chip"><input type="radio" name="trava" value="Medo de me expor e ser julgada" required /><span>Medo de me expor e ser julgada</span></label>
-          <label class="chip"><input type="radio" name="trava" value="Dificuldade de reconhecer meu próprio valor" /><span>Não reconhecer meu próprio valor</span></label>
-          <label class="chip"><input type="radio" name="trava" value="Penso demais antes de agir e perco oportunidades" /><span>Penso demais e perco oportunidades</span></label>
-          <label class="chip"><input type="radio" name="trava" value="Dificuldade de me posicionar em reuniões e feedbacks" /><span>Não me posiciono em reuniões</span></label>
-          <label class="chip"><input type="radio" name="trava" value="Faço muito, mas não sou reconhecida" /><span>Faço muito e não sou reconhecida</span></label>
-          <label class="chip"><input type="radio" name="trava" value="Espero me sentir preparada antes do próximo passo" /><span>Espero me sentir preparada</span></label>
-        </div>
-      </fieldset>
-      <fieldset class="field field--group">
-        <legend class="field__label">O que você mais deseja conquistar nos próximos 12 meses? <i>*</i></legend>
-        <div class="chips">
-          <label class="chip"><input type="radio" name="desejo" value="Ser promovida" required /><span>Ser promovida</span></label>
-          <label class="chip"><input type="radio" name="desejo" value="Assumir liderança" /><span>Assumir uma liderança</span></label>
-          <label class="chip"><input type="radio" name="desejo" value="Me posicionar com mais segurança" /><span>Me posicionar com segurança</span></label>
-          <label class="chip"><input type="radio" name="desejo" value="Ser mais reconhecida" /><span>Ser mais reconhecida</span></label>
-          <label class="chip"><input type="radio" name="desejo" value="Ter coragem para agir" /><span>Ter coragem para agir</span></label>
-        </div>
-      </fieldset>
-    </fieldset>
-
-    <fieldset class="wz__step" data-step="3">
-      <p class="wz__legend"><span class="wz__legend-i">03</span> Seu compromisso</p>
-      <div class="form__row form__row--2">
-        <label class="field">
-          <span class="field__label">Faixa de investimento que considera adequada <i>*</i></span>
-          <span class="select">
-            <select name="investimento" required>
-              <option value="" disabled selected>Selecione</option>
-              <option>Até R$ 1.500</option>
-              <option>Entre R$ 1.500 e R$ 2.500</option>
-              <option>Entre R$ 2.500 e R$ 3.500</option>
-              <option>Entre R$ 3.500 e R$ 5.000</option>
-              <option>Acima de R$ 5.000</option>
-            </select>
-          </span>
-        </label>
-        <label class="field">
-          <span class="field__label">Pretende entrar na próxima turma? <i>*</i></span>
-          <span class="select">
-            <select name="intencao" required>
-              <option value="" disabled selected>Selecione</option>
-              <option>Sim, quero garantir minha vaga</option>
-              <option>Tenho interesse, mas ainda preciso avaliar</option>
-            </select>
-          </span>
-        </label>
-      </div>
-      <fieldset class="field field--group">
-        <legend class="field__label">O quanto você está comprometida em transformar sua carreira agora? <i>*</i></legend>
-        <div class="range">
-          <input type="range" name="comprometimento" min="1" max="10" value="7" step="1" id="range" />
-          <output id="rangeOut">7</output>
-        </div>
-        <div class="range__scale"><span>1 · só buscando informações</span><span>10 · pronta para agir</span></div>
-      </fieldset>
-    </fieldset>
-
-    </div>
-    <div class="wz__nav">
-      <button type="button" class="btn btn--ghost wz__back" id="wzBack" hidden data-cursor="join"><span class="btn__arrow">←</span> Voltar</button>
-      <button type="button" class="btn btn--gold wz__next" id="wzNext" data-cursor="join">Continuar <span class="btn__arrow">→</span></button>
-      <button type="submit" class="btn btn--gold btn--submit" id="wzSubmit" hidden data-cursor="join">
-        <span class="btn__label">Entrar na lista de espera</span>
-        <span class="btn__arrow">→</span>
-      </button>
-    </div>
-    <p class="form__legal">Ao enviar, você entra para a Lista de Espera do Método Viviane Fraga VCM. Seus dados são usados apenas para contato sobre a mentoria.</p>
-  </form>
-
-  <!-- SUCCESS STATE -->
-  <div class="success" id="success" hidden>
-    <span class="success__badge" aria-hidden="true"><i></i><span>✦</span></span>
-    <p class="success__eyebrow">Inscrição confirmada</p>
-    <h3 class="success__title">Você está na lista.</h3>
-    <p class="success__msg">Recebemos suas respostas. Como as vagas são limitadas, priorizamos os perfis mais alinhados com a mentoria. Nossa equipe entra em contato pelo WhatsApp.</p>
-    <div class="success__cta">
-      <a href="https://www.instagram.com/viviane.fragaa" target="_blank" rel="noopener" class="btn btn--gold" data-cursor="join">Seguir @viviane.fragaa <span class="btn__arrow">→</span></a>
-      <button type="button" class="btn btn--ghost" data-modal-close data-cursor="join">Fechar</button>
-    </div>
-  </div>
-  </div>
-</div>
 
 </main>
 
@@ -665,7 +521,7 @@
 <footer class="footer">
   <div class="footer__cta">
     <h2 class="footer__big">Vai com <em class="grad">medo mesmo.</em></h2>
-    <a href="#lista" class="btn btn--gold" data-modal-open data-cursor="join">Entrar para a lista de espera <span class="btn__arrow">→</span></a>
+    <a href="inscricao.html" class="btn btn--gold" data-cursor="join">Entrar para a lista de espera <span class="btn__arrow">→</span></a>
   </div>
   <div class="footer__base">
     <span class="footer__brand">Método <em>VCM</em> · Viviane Fraga</span>

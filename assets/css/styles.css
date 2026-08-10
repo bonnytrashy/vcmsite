@@ -1066,3 +1066,24 @@ body.modal-open{overflow:hidden}
 .field input[type=text],.field input[type=tel],.field input[type=email],.select select{background:#000;border-color:rgba(255,255,255,.09)}
 .field input:focus,.select select:focus{background:#000;border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,178,94,.14)}
 .chip span{background:rgba(0,0,0,.5)}
+
+/* =====================================================================
+   PÁGINA /inscricao — formulário em tela cheia (sem modal)
+   ===================================================================== */
+.page-form{min-height:100vh}
+.fnav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem var(--pad);background:rgba(8,6,5,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft)}
+.fnav__back{font-size:.82rem;color:var(--muted);letter-spacing:.02em;transition:color .3s;display:inline-flex;align-items:center;gap:.5em}
+.fnav__back span{color:var(--gold)}
+.fnav__back:hover{color:var(--cream)}
+.fpage{max-width:680px;margin:0 auto;padding:clamp(2.5rem,7vh,5rem) var(--pad) clamp(4rem,10vh,7rem)}
+.fpage__intro{text-align:center;margin-bottom:clamp(2.4rem,5vh,3.4rem)}
+.fpage__intro .eyebrow{margin-bottom:1.2rem}
+.fpage__intro h1{font-family:var(--fx);font-weight:400;font-size:clamp(2.2rem,6vw,3.6rem);color:var(--gold-lite);line-height:1.03;margin-bottom:1rem;letter-spacing:-.01em}
+.fpage__intro p{color:var(--muted);font-size:1.02rem;line-height:1.6;max-width:48ch;margin:0 auto}
+.fform{display:flex;flex-direction:column;gap:clamp(2rem,4vw,2.6rem);background:linear-gradient(180deg,#0b0908,#040302);border:1px solid var(--line);border-radius:24px;padding:clamp(1.6rem,4vw,2.8rem);box-shadow:0 40px 120px -50px rgba(0,0,0,.8)}
+.fgroup{display:flex;flex-direction:column;gap:1.3rem}
+.fgroup__legend{font-family:var(--fx);font-weight:400;font-size:1.2rem;color:var(--cream);display:flex;align-items:center;gap:.7em;padding-bottom:.7rem;border-bottom:1px solid var(--line-soft)}
+.fgroup__legend span{font-style:italic;color:var(--gold);font-size:.82rem;border:1px solid var(--line);border-radius:100px;padding:.25em .8em}
+.fform .btn--submit{width:100%;justify-content:center;margin-top:.4rem}
+.page-form .success{margin:2.5rem auto 0}
+@media (max-width:520px){ .fform{padding:1.4rem 1.1rem} }

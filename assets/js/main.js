@@ -45,9 +45,11 @@
 
   /* ---------------- NAV state ---------------- */
   const nav = document.getElementById('nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
-  onScroll();
-  window.addEventListener('scroll', onScroll, { passive: true });
+  if (nav) {
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
 
   const y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
@@ -398,6 +400,7 @@
         if (head) head.hidden = true;
         form.hidden = true; success.hidden = false;
         if (modalPanel) modalPanel.scrollTop = 0;
+        else if (success.scrollIntoView) { if (lenis) lenis.scrollTo(success, { offset: -120 }); else success.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
       } catch (err) { btn.textContent = original; alert('Não foi possível enviar agora. Tente novamente em instantes.'); }
     });
     form.querySelectorAll('input,select').forEach((el) => {
