@@ -13,7 +13,7 @@
   if (hasGSAP) gsap.registerPlugin(ScrollTrigger);
 
   /* CONFIG — endpoint da lista de espera (vazio = modo demonstração) */
-  const FORM_ENDPOINT = '';
+  const FORM_ENDPOINT = 'https://n8n.protocolopentagono.com.br/webhook/2799d861-9e8f-49b1-a108-698c3b9d0038';
 
   /* ---------------- PRELOADER ---------------- */
   const preloader = document.getElementById('preloader');
@@ -337,7 +337,15 @@
       };
       nextBtn.addEventListener('click', () => { if (validateStep(cur)) { cur = Math.min(cur + 1, steps.length - 1); render(true); } });
       backBtn.addEventListener('click', () => { cur = Math.max(cur - 1, 0); render(true); });
-      resetWizard = () => { cur = 0; render(false); };
+      resetWizard = () => {
+        cur = 0;
+        form.hidden = false;
+        if (success) success.hidden = true;
+        const head = modal && modal.querySelector('.modal__head');
+        if (head) head.hidden = false;
+        if (submitBtn) { const lbl = submitBtn.querySelector('.btn__label'); if (lbl) lbl.textContent = 'Entrar na lista de espera'; }
+        render(false);
+      };
       render(false);
     }
 
@@ -359,20 +367,37 @@
         form.classList.add('shake'); setTimeout(() => form.classList.remove('shake'), 500);
         return;
       }
-      const data = Object.fromEntries(new FormData(form).entries());
-      data.origem = 'landing-vcm'; data.timestamp = new Date().toISOString();
+      const fd = new FormData(form);
+      const data = {
+        nome: (fd.get('nome') || '').toString().trim(),
+        whatsapp: (fd.get('whatsapp') || '').toString().trim(),
+        email: (fd.get('email') || '').toString().trim(),
+        instagram: (fd.get('instagram') || '').toString().trim(),
+        momento_carreira: fd.get('carreira') || '',
+        principal_trava: fd.get('trava') || '',
+        objetivo_12_meses: fd.get('desejo') || '',
+        faixa_investimento: fd.get('investimento') || '',
+        intencao_turma: fd.get('intencao') || '',
+        comprometimento: fd.get('comprometimento') || '',
+        origem: 'landing-vcm',
+        pagina: location.href,
+        enviado_em: new Date().toISOString(),
+      };
       const btn = form.querySelector('.btn--submit .btn__label');
       const original = btn.textContent; btn.textContent = 'Enviando…';
       try {
         if (FORM_ENDPOINT) {
-          await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+          // urlencoded + no-cors: requisição "simples" (sem preflight) -> chega no n8n estruturado
+          await fetch(FORM_ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(data), keepalive: true });
         } else {
           const list = JSON.parse(localStorage.getItem('vcm_leads') || '[]');
           list.push(data); localStorage.setItem('vcm_leads', JSON.stringify(list));
-          await new Promise((r) => setTimeout(r, 650));
+          await new Promise((r) => setTimeout(r, 500));
         }
+        const head = modal && modal.querySelector('.modal__head');
+        if (head) head.hidden = true;
         form.hidden = true; success.hidden = false;
-        if (modalPanel) modalPanel.scrollTo({ top: 0, behavior: 'smooth' });
+        if (modalPanel) modalPanel.scrollTop = 0;
       } catch (err) { btn.textContent = original; alert('Não foi possível enviar agora. Tente novamente em instantes.'); }
     });
     form.querySelectorAll('input,select').forEach((el) => {

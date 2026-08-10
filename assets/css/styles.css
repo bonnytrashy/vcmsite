@@ -1018,3 +1018,29 @@ body.modal-open{overflow:hidden}
 
 /* garante que o atributo hidden vença o display dos .btn (wizard) */
 [hidden]{display:none!important}
+
+/* =====================================================================
+   FORM v2 — tela de sucesso redesenhada + modal compacto no mobile
+   ===================================================================== */
+.modal .success{margin:0;border:none;box-shadow:none;background:none;padding:clamp(1rem,4vw,2rem) 0 .5rem}
+.success{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.05rem;max-width:46ch;margin-inline:auto;animation:rise .7s var(--ease) both}
+.success .modal__close{position:absolute;top:-.4rem;right:0}
+.success__badge{position:relative;display:grid;place-items:center;width:78px;height:78px;border-radius:50%;background:radial-gradient(circle at 50% 30%,rgba(234,190,198,.26),rgba(216,178,94,.1));border:1px solid var(--line-rose);box-shadow:0 0 0 8px rgba(234,190,198,.04),0 16px 46px -14px rgba(234,190,198,.55);margin-bottom:.2rem}
+.success__badge span{font-size:1.9rem;color:var(--rose-lite);line-height:1}
+.success__badge i{position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--line-rose);opacity:.5;animation:pulseRing 2.6s var(--ease) infinite}
+@keyframes pulseRing{0%{transform:scale(.92);opacity:.6}70%{transform:scale(1.28);opacity:0}100%{opacity:0}}
+.success__eyebrow{font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--rose)}
+.success__title{font-family:var(--fx);font-weight:400;font-size:clamp(1.9rem,5vw,2.7rem);color:var(--gold-lite);line-height:1.02}
+.success__msg{color:var(--muted);font-size:1rem;line-height:1.6}
+.success__cta{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:.7rem;width:100%}
+@media (max-width:520px){
+  .success__cta{flex-direction:column;align-items:stretch}
+  .success__cta .btn{justify-content:center;width:100%}
+  /* modal compacto no mobile */
+  .modal__panel{padding:1.5rem 1.2rem 1.7rem}
+  .modal__head{margin-bottom:1.4rem;padding-right:2.6rem}
+  .modal__title{font-size:1.5rem;line-height:1.1}
+  .modal__sub{font-size:.86rem;line-height:1.45}
+  .modal__close{width:38px;height:38px}
+  .wz__legend{font-size:1.05rem}
+}
