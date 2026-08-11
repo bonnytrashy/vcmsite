@@ -234,7 +234,7 @@
       const dist = () => window.innerHeight * (window.innerWidth < 760 ? 2.6 : 3.4);
       ScrollTrigger.create({
         trigger: stage, start: 'top top', end: () => '+=' + dist(),
-        pin: stage, pinSpacing: true, scrub: 0.35, anticipatePin: 1, invalidateOnRefresh: true,
+        pin: stage, pinSpacing: true, scrub: 0.5, invalidateOnRefresh: true,
         onUpdate: (self) => apply(self.progress),
         onLeave: () => apply(1), onLeaveBack: () => apply(0),
       });
